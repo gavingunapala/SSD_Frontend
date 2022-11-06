@@ -2,8 +2,10 @@ import './App.css';
 import "./bootstrap.min.css";
 import React, {useState} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Login from "./component/login";
+import Login from "./component/Login";
 import AdminDashboard from "./component/AdminDashboard";
+import WorkerDashboard from "./component/WorkerDashboard";
+import ManagerDashboard from "./component/ManagerDashboard";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/" element={<App />} />
     <Route path="/login" element={ <Login/> }/>
     <Route path="/adminDashboard" element={ <AdminDashboard/> }/>
+    <Route path="/workerDashboard" element={ <WorkerDashboard/> }/>
+    <Route path="/managerDashboard" element={ <ManagerDashboard/> }/>
     </Routes>
     </Router>
     </div>
