@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from "react"
-// import '../../styles/Admin/table.css'
-// import AdminSideNav from "./AdminSideNav";
-// import image from "../../img/user.png";
-// import axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
 
     const history = useNavigate();
-    const [admin, setAdmin] = useState([]);
-    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
 
-    // //get logged admin
-    // useEffect(() => {
-    //     const loggedInUser = localStorage.getItem("user");
-    //     console.log(loggedInUser);
-
-    //     function getAdmin() {
-    //         axios.get("http://localhost:8070/admin/get/" + loggedInUser).then((res) => {
-    //             setAdmin(res.data);
-    //             console.log(res.data);
-    //         }).catch((err) => {
-    //         })
-    //     }
-
-    //     getAdmin();
-    // }, []);
-
-    const phoneSetter = (e) => {
-        setPhone(e.target.value);
+    const passwordSetter = (e) => {
+        setPassword(e.target.value);
     }
     const emailSetter = (e) => {
         setEmail(e.target.value);
@@ -39,26 +19,29 @@ const AdminDashboard = () => {
         setName(e.target.value);
     }
 
-    // const UpdateProfile = () => {
-    //     const newAdmin = {
-    //         Name: name,
-    //         Phone: phone,
-    //         Email: email
-    //     };
-    //     axios.put('http://localhost:8070/admin/updateOne/' + admin._id, newAdmin).then(() => {
-    //         alert("Updated successfully!!!")
-    //     }).catch((err) => {
-    //     });
-    // }
+    const CreateWorker= () => {
+        const newWorker = {
+            Name: name,
+            Email: email,
+            Password: password
+        };
+        axios.post('http://localhost:8070/worker/add', newWorker).then(() => {
+            alert("Worker Added successfully!!!")
+        }).catch((err) => {
+        });
+    }
 
-    // const deleteAdmin = (id) => {
-    //     axios.delete('http://localhost:8070/admin/delete/' + id).then(() => {
-    //         localStorage.clear();
-    //         history.push('/login');
-    //     }).catch((err) => {
-    //         alert(err);
-    //     })
-    // };
+    const CreateManager= () => {
+        const newManager = {
+            Name: name,
+            Email: email,
+            Password: password
+        };
+        axios.post('http://localhost:8070/manager/add', newManager).then(() => {
+            alert("Manager Added successfully!!!")
+        }).catch((err) => {
+        });
+    }
 
     return (
         <div>
@@ -77,7 +60,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Name</strong></p>
-                                            <input className="form-control" type="text"
+                                            <input className="form-control" type="text" onChange={nameSetter}
                                             />
                                         </div>
                                     </div>
@@ -85,7 +68,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Email</strong></p>
-                                            <input className="form-control" type="email"
+                                            <input className="form-control" type="email" onChange={emailSetter}
                                             />
                                         </div>
                                     </div>
@@ -93,7 +76,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Password</strong></p>
-                                            <input className="form-control" type="text"
+                                            <input className="form-control" type="text" onChange={passwordSetter}
                                             />
                                         </div>
                                     </div>
@@ -101,7 +84,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col-md-12">
                                             <button className="btn btn-primary d-block w-100 regButton"
-                                                type="submit"
+                                                type="submit" onClick={CreateWorker}
                                             >Add Worker
                                             </button>
                                         </div>
@@ -127,7 +110,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Name</strong></p>
-                                            <input className="form-control" type="text"
+                                            <input className="form-control" type="text" onChange={nameSetter}
                                             />
                                         </div>
                                     </div>
@@ -135,7 +118,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Email</strong></p>
-                                            <input className="form-control" type="email"
+                                            <input className="form-control" type="email" onChange={emailSetter}
                                             />
                                         </div>
                                     </div>
@@ -143,7 +126,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Password</strong></p>
-                                            <input className="form-control" type="text"
+                                            <input className="form-control" type="text" onChange={passwordSetter}
                                             />
                                         </div>
                                     </div>
@@ -151,7 +134,7 @@ const AdminDashboard = () => {
                                     <div className="row">
                                         <div className="col-md-12">
                                             <button className="btn btn-primary d-block w-100 regButton"
-                                                type="submit"
+                                                type="submit" onClick={CreateManager}
                                             >Add Manager
                                             </button>
                                         </div>

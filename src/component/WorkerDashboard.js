@@ -1,64 +1,25 @@
 import React, { useEffect, useState } from "react"
-// import '../../styles/Admin/table.css'
-// import AdminSideNav from "./AdminSideNav";
-// import image from "../../img/user.png";
-// import axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const WorkerDashboard = () => {
 
-    // const history = useNavigate();
-    // const [admin, setAdmin] = useState([]);
-    // const [phone, setPhone] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [name, setName] = useState("");
+    const [uploadedMessage, setMessage] = useState("");
 
-    // //get logged admin
-    // useEffect(() => {
-    //     const loggedInUser = localStorage.getItem("user");
-    //     console.log(loggedInUser);
+    const messageSetter = (e) => {
+        setMessage(e.target.value);
+    }
 
-    //     function getAdmin() {
-    //         axios.get("http://localhost:8070/admin/get/" + loggedInUser).then((res) => {
-    //             setAdmin(res.data);
-    //             console.log(res.data);
-    //         }).catch((err) => {
-    //         })
-    //     }
-
-    //     getAdmin();
-    // }, []);
-
-    // const phoneSetter = (e) => {
-    //     setPhone(e.target.value);
-    // }
-    // const emailSetter = (e) => {
-    //     setEmail(e.target.value);
-    // }
-    // const nameSetter = (e) => {
-    //     setName(e.target.value);
-    // }
-
-    // const UpdateProfile = () => {
-    //     const newAdmin = {
-    //         Name: name,
-    //         Phone: phone,
-    //         Email: email
-    //     };
-    //     axios.put('http://localhost:8070/admin/updateOne/' + admin._id, newAdmin).then(() => {
-    //         alert("Updated successfully!!!")
-    //     }).catch((err) => {
-    //     });
-    // }
-
-    // const deleteAdmin = (id) => {
-    //     axios.delete('http://localhost:8070/admin/delete/' + id).then(() => {
-    //         localStorage.clear();
-    //         history.push('/login');
-    //     }).catch((err) => {
-    //         alert(err);
-    //     })
-    // };
+    const CreateMessage= () => {
+        const newMessage = {
+            UserId: "Pat",
+            UploadedMessage: uploadedMessage
+        };
+        axios.post('http://localhost:8070/message/add', newMessage).then(() => {
+            alert("Message Added successfully!!!")
+        }).catch((err) => {
+        });
+    }
 
     return (
         <div>
@@ -76,7 +37,7 @@ const WorkerDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Message</strong></p>
-                                            <textarea className="form-control" type="text-area"
+                                            <textarea className="form-control" type="text-area" onChange={messageSetter}
                                             />
                                         </div>
                                     </div>
@@ -84,7 +45,7 @@ const WorkerDashboard = () => {
                                     <div className="row">
                                         <div className="col-md-12">
                                             <button className="btn btn-primary d-block w-100 regButton"
-                                                type="submit"
+                                                type="submit" onClick={CreateMessage}
                                             >Save
                                             </button>
                                         </div>
