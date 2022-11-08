@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios";
+import FilesUploadComponent from "./FileUploadComponent";
 
 const ManagerDashboard = () => {
 
@@ -82,31 +83,9 @@ const ManagerDashboard = () => {
                     <br />
                     <div className="card adminHomeCard clean-card text-center">
                         <div className="card-body info">
-                        <br /><br /><br />
-                            <div className="row">
-                                <div className="col-md-12">
-                                    <br />
-                                    <div className="row">
-                                        <div className="col">
-                                            <input type="file"
-                                            />
-                                        </div>
-                                    </div>
-                                    <br />
-                                
-                                 
-                                    <br />
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <button className="btn btn-primary d-block w-100 regButton"
-                                                type="submit"
-                                            >Upload
-                                            </button>
-                                        </div>
-                                        <br /><br /><br /><br /> <br />
-                                    </div>
-                                </div>
-                            </div>
+                        <br /><br /><br /><br />
+                            <FilesUploadComponent />
+                            <br /><br /><br />
                         </div>
                     </div>
                 </div>

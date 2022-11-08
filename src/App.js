@@ -2,10 +2,11 @@ import './App.css';
 import "./bootstrap.min.css";
 import React, {useState} from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Login from "./component/Login";
+import Login from "./component/login";
 import AdminDashboard from "./component/AdminDashboard";
 import WorkerDashboard from "./component/WorkerDashboard";
 import ManagerDashboard from "./component/ManagerDashboard";
+import FilesUploadComponent from "./component/FileUploadComponent";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
     <Route path="/adminDashboard" element={ <AdminDashboard/> }/>
     <Route path="/workerDashboard" element={ <WorkerDashboard/> }/>
     <Route path="/managerDashboard" element={ <ManagerDashboard/> }/>
+    <Route path="/filesUploadComponent" element={ <FilesUploadComponent/> }/>
     </Routes>
     </Router>
     </div>
