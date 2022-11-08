@@ -1,6 +1,40 @@
 import React, { useEffect, useState } from "react"
+import axios from "axios";
 
 const ManagerDashboard = () => {
+
+    const [uploadedMessage, setMessage] = useState("");
+    const [uploadedFile, setFile] = useState("");
+
+    const messageSetter = (e) => {
+        setMessage(e.target.value);
+    }
+
+    const fileSetter = (e) => {
+        setFile(e.target.value);
+    }
+
+    const CreateMessage= () => {
+        const newMessage = {
+            UserId: "Pat",
+            UploadedMessage: uploadedMessage
+        };
+        axios.post('http://localhost:8070/message/add', newMessage).then(() => {
+            alert("Message Added successfully!!!")
+        }).catch((err) => {
+        });
+    }
+
+    const UploadFile= () => {
+        const newMessage = {
+            UserId: "Pat",
+            UploadedFile: uploadedFile
+        };
+        axios.post('http://localhost:8070/message/add', newMessage).then(() => {
+            alert("Message Added successfully!!!")
+        }).catch((err) => {
+        });
+    }
 
     return (
         <div>
@@ -19,7 +53,7 @@ const ManagerDashboard = () => {
                                     <div className="row">
                                         <div className="col">
                                             <p className="labels"><strong>Message</strong></p>
-                                            <textarea className="form-control" type="text"
+                                            <textarea className="form-control" type="text" onChange={messageSetter}
                                             />
                                         </div>
                                     </div>
@@ -27,7 +61,7 @@ const ManagerDashboard = () => {
                                     <div className="row">
                                         <div className="col-md-12">
                                             <button className="btn btn-primary d-block w-100 regButton"
-                                                type="submit"
+                                                type="submit" onClick={CreateMessage}
                                             >Send Message
                                             </button>
                                         </div>
